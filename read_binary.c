@@ -12,11 +12,12 @@
 
 //CAMAREROS
 
+
 void LeerCamareros(t_camarero camareros[])
 {
 	FILE * file;	
 	int num;
-
+	//mensaje oculto
 	file = fopen("camarero.bin", "rb");
 	
 	if (!file)
