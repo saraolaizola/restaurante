@@ -1,0 +1,6 @@
+5
+1 PrimerPlato
+2 SegundoPlato
+3 Postre
+4 Bebida
+5 Pan
