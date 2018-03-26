@@ -51,8 +51,13 @@ void printCamarero(t_camarero *c)
 
 void MostrarCamareros(t_camarero *c, int total)
 {
+	printf("MostrarCamareros\n");
+	printf("   total: %d\n", total);
+	if(c == NULL) printf("  c es NULO!!!!\n");
 	for (int i=0; i<total; i++)
 	{
-		printf("%s %s, dni: %d, tel: %d\n", (c+i)->nombre, (c+i)->apellido, (c+i)->dni, (c+i)->tel);
+		printf("   Iteracion %d\n", i);
+		printf("%s %s, dni: %d, tel: %d\n", c[i].nombre, c[i].apellido, c[i].dni, c[i].tel);
+		//printf("%s %s, dni: %d, tel: %d\n", (c+i)->nombre, (c+i)->apellido, (c+i)->dni, (c+i)->tel);
 	}
 }

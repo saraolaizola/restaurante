@@ -18,6 +18,9 @@ int main (void)
 	int n, opcion,c;
 	
 	int totalC = totalCamareros();
+	printf("---------------------------\n");
+	printf("Total Camareros %d\n", totalC);
+	printf("---------------------------\n");
 	t_camarero *camareros = (t_camarero *) malloc(totalC * sizeof(t_camarero));
 	LeerCamareros(camareros);
 
@@ -66,7 +69,8 @@ int main (void)
 						switch (n)
 						{
 							case 1:
-							MostrarCamareros(&camareros[0], totalC);
+							//MostrarCamareros(&camareros[0], totalC);
+							MostrarCamareros(camareros, totalC);
 							break;
 
 							case 2:

@@ -12,14 +12,6 @@ void clear_if_needed(char *str)
     }
 }
 
-void clear_if_neededF (char* str, FILE *f)
-{
-	if (str[strlen(str) - 1] != '\n')
-	{
-		int c;    
-    	while ( (c = fgetchar(f)) != EOF && c != '\n');
-    }
-}
 
 int comprobarClave()
 {

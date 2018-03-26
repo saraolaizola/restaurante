@@ -87,8 +87,6 @@ void LeerCategorias(t_categoria c[])
 			{
 				primero=1;
 			}
-
-			void clear_if_neededF (str, f);
 		}
 	}
 }
