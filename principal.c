@@ -8,19 +8,16 @@
 #include <string.h>
 #include <stdlib.h>
 
-#define MAX_LEN 2
+#define PARAM "admin"
 
-int main (void)
+int main (int argc, char *argv[])
 {
 	setvbuf(stdout, 0, _IONBF, 0);
 
-	char str [MAX_LEN];
-	int n, opcion,c;
-	
+	int c,n;
+
+	//INICIALIZAMOS LOS ARRAY
 	int totalC = totalCamareros();
-	printf("---------------------------\n");
-	printf("Total Camareros %d\n", totalC);
-	printf("---------------------------\n");
 	t_camarero *camareros = (t_camarero *) malloc(totalC * sizeof(t_camarero));
 	LeerCamareros(camareros);
 
@@ -31,109 +28,94 @@ int main (void)
 	int totalP = totalProductos();
 	t_producto *productos = (t_producto *) malloc(totalP * sizeof(t_producto));
 	LeerProductos(productos);
+	
+	//COMIENZO APLICACION
+	printf("\n**Bienvenido al Restaurante**\n");
 
-	printf("Bienvenido al Restaurante\n");
-
-	do 
+	if ((argc < 2)||(strcmp(argv[1], PARAM) != 0))
 	{
-		printf("\n 1. Administrador");
-		printf("\n 2. Camarero");
-		printf("\n 3. Salir");
-
-		printf("\n\n Introduzca opci%cn (1-3): ",162);
-		fgets(str,MAX_LEN,stdin);
-		clear_if_needed(str);
-		sscanf(str,"%d",&opcion);
-
-		switch (opcion)
+		do
 		{
-			case 1:
-				c = comprobarClave();
-				if (c==0)
-				{
-					do
-					{
-						printf("\n 1. Consultar estad%csticas",161);
-						printf("\n 2. A%cadir camarero", 164);
-						printf("\n 3. A%cadir producto", 164); 
-						printf("\n 4. Editar producto");
-						printf("\n 5. Eliminar producto");
-						printf("\n 6. Cambiar clave");
-						printf("\n 7. Salir");
-					
-						printf("\n\n Introduzca opci%cn (1-7): ",162);
-						fgets(str,MAX_LEN,stdin);
-						sscanf(str,"%d",&n);
-						clear_if_needed(str);
+			printf("\n 1. Nueva mesa");
+			printf("\n 2. A%cadir a mesa", 164); 	
+			printf("\n 3. Imprimir cuenta");
+			printf("\n 4. Salir");
 
-						switch (n)
-						{
-							case 1:
-							//MostrarCamareros(&camareros[0], totalC);
-							MostrarCamareros(camareros, totalC);
-							break;
+			n=introducirOpcion(4);
 
-							case 2:
-							camareros = (t_camarero *) realloc (camareros, (totalC+1) * sizeof(t_camarero));
-							AltaCamarero(&camareros[totalC]);
-							totalC++;
-							break;
-
-							case 3:	
-							productos = (t_producto *) realloc (productos, (totalP+1) * sizeof(t_producto));
-							AltaProducto(&productos[totalP],categorias,totalCat);
-							totalP++;
-							break;
-
-							case 4:
-							MostrarProductos(productos, totalP);
-							EditarProducto(productos,categorias,totalCat);
-							break;
-
-							case 5:
-							//eliminar producto
-							break;
-
-							case 6:
-							cambiarClave();
-							break;
-						}
-					} while (n!=7);
-				}
+			switch (n)
+			{
+				case 1:
+				//Anyadir una nueva mesa
 				break;
 
-			case 2:
-				do
+				case 2:
+				//Anyadir productos a una mesa ya anyadida
+				break;
+
+				case 3:
+				//Sacar la cuenta de una mesa determinada
+				break;
+			}
+		} while (n!=4);
+	}
+	else
+	{
+		c = comprobarClave();
+				
+		if (c==0)
+		{
+			do
+			{
+				printf("\n 1. Consultar estad%csticas",161);
+				printf("\n 2. A%cadir camarero", 164);
+				printf("\n 3. A%cadir producto", 164); 
+				printf("\n 4. Editar producto");
+				printf("\n 5. Eliminar producto");
+				printf("\n 6. Cambiar clave");
+				printf("\n 7. Salir");
+			
+				n=introducirOpcion(7);
+				switch (n)
 				{
-					printf("\n 1. Nueva mesa");
-					printf("\n 2. A%cadir a mesa", 164); 	
-					printf("\n 3. Imprimir cuenta");
-					printf("\n 4. Salir");
+					case 1:
+					//MostrarCamareros(&camareros[0], totalC);
+					MostrarCamareros(camareros, totalC);
+					break;
 
-					printf("\n\n Introduzca opci%cn (1-4): ",162);
-					fgets(str,MAX_LEN,stdin);
-					clear_if_needed(str);
-					sscanf(str,"%d",&n);
+					case 2:
+					camareros = (t_camarero *) realloc (camareros, (totalC+1) * sizeof(t_camarero));
+					AltaCamarero(&camareros[totalC]);
+					totalC++;
+					break;
 
-					switch (n)
-					{
-						case 1:
-						//Anyadir una nueva mesa
-						break;
+					case 3:	
+					productos = (t_producto *) realloc (productos, (totalP+1) * sizeof(t_producto));
+					AltaProducto(&productos[totalP],categorias,totalCat);
+					totalP++;
+					break;
 
-						case 2:
-						//Anyadir productos a una mesa ya anyadida
-						break;
+					case 4:
+					MostrarProductos(productos, totalP);
+					EditarProducto(productos,categorias,totalCat);
+					break;
 
-						case 3:
-						//Sacar la cuenta de una mesa determinada
-						break;
-					}
-				} while (n!=4);
-			break;
+					case 5:
+					//eliminar producto
+					break;
+
+					case 6:
+					cambiarClave();
+					break;
+				}
+			} while (n!=7);
 		}
-	} while (opcion!=3);
-
+		else
+		{
+			printf("Clave erronea\n");
+		}
+	}	
+			
 	EscribirCamarero(camareros,totalC);
 	EscribirProducto(productos,totalP);
 

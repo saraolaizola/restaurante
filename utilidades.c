@@ -3,6 +3,8 @@
 #include <ctype.h>
 #include <string.h>
 
+#define MAX_LEN 2
+
 void clear_if_needed(char *str)
 {
 	if (str[strlen(str) - 1] != '\n')
@@ -12,6 +14,18 @@ void clear_if_needed(char *str)
     }
 }
 
+int introducirOpcion(int opciones)
+{
+	char str [MAX_LEN];
+	int n;
+
+	printf("\n\n Introduzca opci%cn (1-%d): ",162,opciones);
+	fgets(str,MAX_LEN,stdin);
+	clear_if_needed(str);
+	sscanf(str,"%d",&n);
+
+	return n;
+}
 
 int comprobarClave()
 {
@@ -19,7 +33,7 @@ int comprobarClave()
 	int clave;
 	char str [10];
 
-	printf("Introducir clave administrador: \n");
+	printf("\n Introducir clave administrador: \n");
 	fgets(str,10,stdin);
 	sscanf(str,"%d",&clave);
 	clear_if_needed(str);
