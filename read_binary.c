@@ -13,12 +13,11 @@
 //CAMAREROS
 
 
-void LeerCamareros(t_camarero camareros[])
+void LeerCamareros(t_camarero c[])
 {
 	FILE * file;	
 	int num;
-	//mensaje oculto
-	file = fopen("camarero.bin", "rb");
+	file = fopen("camareros.txt", "r");
 	
 	if (!file)
 	{
@@ -26,9 +25,33 @@ void LeerCamareros(t_camarero camareros[])
 	}
 	else
 	{
-		num = fgetc(file);
-		
-		fread(camareros, sizeof(t_camarero), num, file);
+		char str [100];
+		char nombre [20];
+		char apellido [20];
+		int dni;
+		int tel;
+
+		int primero=0;
+		int i=0;
+
+		while(fgets(str,100,file))
+		{
+			if (primero!=0)
+			{
+				sscanf(str, "%s %s %d %d",nombre,apellido,&dni,&tel);
+				c[i].nombre = (char *) malloc ((strlen(nombre)+1) * sizeof(char));
+				strcpy (c[i].nombre, nombre);
+				c[i].apellido = (char *) malloc ((strlen(apellido)+1) * sizeof(char));
+				strcpy (c[i].apellido, apellido);
+				c[i].dni = dni;
+				c[i].tel = tel;
+				i++;
+			}
+			else
+			{
+				primero=1;
+			}
+		}
 	}
 }
 
@@ -37,7 +60,7 @@ int totalCamareros()
 	FILE * file;	
 	int num=0;
 
-	file = fopen("camarero.bin", "rb");
+	file = fopen("camareros.txt", "r");
 	
 	if (!file)
 	{
@@ -67,14 +90,10 @@ void LeerCategorias(t_categoria c[])
 	{
 		int orden;
 		char nombre [50];
-		char str [50];
+		char str [100];
 		int primero=0;
 
-		char *line = NULL;
-		size_t len = 0;
-		ssize_t read;
-
-		while(fgets(str,50,f))
+		while(fgets(str,100,f))
 		{
 			if (primero!=0)
 			{
@@ -112,12 +131,12 @@ int totalCategorias()
 
 //PRODUCTOS
 
-void LeerProductos(t_producto productos[])
+void LeerProductos(t_producto p[])
 {
 	FILE * file;	
 	int num;
 
-	file = fopen("producto.bin", "rb");
+	file = fopen("productos.txt", "r");
 	
 	if (!file)
 	{
@@ -125,10 +144,31 @@ void LeerProductos(t_producto productos[])
 	}
 	else
 	{
-		num = fgetc(file);
-		
-		fread(productos, sizeof(t_producto), num, file);
-		//Se guarda bien?¿
+		char str [100];
+		char nombre [20];
+		char categoria [20];
+		float precio;
+
+		int primero=0;
+		int i=0;
+
+		while(fgets(str,100,file))
+		{
+			if (primero!=0)
+			{
+				sscanf(str, "%s %f %s",nombre,&precio,categoria);
+				p[i].nombre = (char *) malloc ((strlen(nombre)+1) * sizeof(char));
+				strcpy (p[i].nombre, nombre);
+				p[i].precio = precio;
+				p[i].categoria = (char *) malloc ((strlen(categoria)+1) * sizeof(char));
+				strcpy (p[i].categoria, categoria);
+				i++;
+			}
+			else
+			{
+				primero=1;
+			}
+		}
 	}
 }
 
@@ -137,7 +177,7 @@ int totalProductos()
 	FILE * file;	
 	int num=0;
 
-	file = fopen("producto.bin", "rb");
+	file = fopen("productos.txt", "r");
 	
 	if (!file)
 	{

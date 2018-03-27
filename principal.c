@@ -135,10 +135,10 @@ int main (void)
 	} while (opcion!=3);
 
 	EscribirCamarero(camareros,totalC);
-	//EscribirProducto(productos,totalP);
+	EscribirProducto(productos,totalP);
 
-	//free(camareros);
-	//free(productos);
+	free(camareros);
+	free(productos);
 
 	return 0;
 }

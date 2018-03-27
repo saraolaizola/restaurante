@@ -11,23 +11,28 @@
 
 void EscribirCamarero(t_camarero c[], int total)
 {
-	FILE *f = fopen("camarero.bin","wb");
+	FILE *f = fopen("camareros.txt","w");
 
 	if (!f)
 	{
-		printf("Error al abrir el archivo \n");
+		printf("No se ha podido abrir el fichero\n");
 	}
 	else
 	{
-		fputc(total, f); 
-		printf("%d\n",total);
-		fwrite(c,sizeof(t_camarero),total,f);
+		fputc(total,f);
+		fprintf(f,"\n");
+		for (int i=0;i<total;i++)
+		{
+			fprintf(f,"%s %s %d %d",c[i].nombre,c[i].apellido,c[i].dni,c[i].tel);
+			fprintf(f, "\n");
+		}
+		fclose(f);
 	}
 }
 
-void EscribirProducto(t_producto *p, int total)
+void EscribirProducto(t_producto p[], int total)
 {
-	FILE *f = fopen("producto.bin","wb");
+	FILE *f = fopen("productos.txt","w");
 
 	if (!f)
 	{
@@ -35,8 +40,13 @@ void EscribirProducto(t_producto *p, int total)
 	}
 	else
 	{
-		fputc(total, f); 
-		fwrite(p,sizeof(t_producto),total,f);
+		fputc(total,f);
+		fprintf(f,"\n");
+		for (int i=0;i<total;i++)
+		{
+			fprintf(f,"%s %f %s",p[i].nombre,p[i].precio,p[i].categoria);
+			fprintf(f, "\n");
+		}
+		fclose(f);
 	}
 }
-
