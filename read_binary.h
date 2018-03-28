@@ -10,7 +10,7 @@
 void LeerCamareros(t_camarero camareros[]);
 int totalCamareros();
 
-void MostrarCamareros(t_camarero *camareros, int total);
+void MostrarCamareros(t_camarero camareros[], int total);
 void LeerCategorias(t_categoria categoria[]);
 int totalCategorias();
 

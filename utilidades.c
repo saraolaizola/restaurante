@@ -27,6 +27,47 @@ int introducirOpcion(int opciones)
 	return n;
 }
 
+char* quitarEspacio (char* input)                                         
+{
+    int i,j;
+    char *output=input;
+    for (i = 0, j = 0; i<strlen(input); i++,j++)          
+    {
+        if (input[i]!=' ')                           
+            output[j]=input[i];                     
+        else
+            j--;                                     
+    }
+    output[j]=0;
+    return output;
+}
+
+char* EspacioA_ (char* input)                                         
+{
+    int i;
+   	for (i = 0; i<strlen(input); i++)          
+    {
+        if (input[i]==' ')  
+        {
+        	input[i]='_';
+        }                                           
+    }
+   	return input;
+}
+
+char* _AEspacio (char* input)                                         
+{
+    int i;
+   	for (i = 0; i<strlen(input); i++)          
+    {
+        if (input[i]=='_')  
+        {
+        	input[i]=' ';
+        }                                           
+    }
+   	return input;
+}
+
 int comprobarClave()
 {
 	FILE *f;

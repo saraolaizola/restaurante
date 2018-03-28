@@ -11,6 +11,11 @@
 
 void AltaProducto(t_producto *p, t_categoria c[],int totalCat)
 {
+	p->nombre = NULL;
+	p->precio = 0;
+	p->categoria = NULL;
+
+
 	char str [MAX_LEN];
 	char frmt_str [MAX_LEN];
 	int opcion;
@@ -18,6 +23,7 @@ void AltaProducto(t_producto *p, t_categoria c[],int totalCat)
 
 	printf("Nombre: \n");
 	fgets(str,MAX_LEN,stdin);
+	EspacioA_(str);
 	sscanf(str, "%s",frmt_str);
 	clear_if_needed(str);
 	size = strlen(frmt_str);
@@ -59,6 +65,6 @@ void MostrarProductos(t_producto *p, int total)
 {
 	for (int i=0; i<total; i++)
 	{
-		printf("%d. %s %.2feuros %s\n",i,(p+i)->nombre,(p+i)->precio,(p+i)->categoria);
+		printf("%d. %s %.2feuros %s\n",i,p[i].nombre,p[i].precio,p[i].categoria);
 	}
 }

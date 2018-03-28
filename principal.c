@@ -79,7 +79,6 @@ int main (int argc, char *argv[])
 				switch (n)
 				{
 					case 1:
-					//MostrarCamareros(&camareros[0], totalC);
 					MostrarCamareros(camareros, totalC);
 					break;
 

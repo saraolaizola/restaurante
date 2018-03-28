@@ -28,6 +28,7 @@ char * Categoria (t_categoria c[],int num, int total)
 		{
 			int size = strlen(c[i].nombre);
 			nombre = (char *) malloc ((size+1) * sizeof(char));
+			EspacioA_ (nombre);
 			strcpy (nombre,c[i].nombre);
 		}
 	}

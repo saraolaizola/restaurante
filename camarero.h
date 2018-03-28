@@ -13,7 +13,7 @@ typedef struct
 } t_camarero;
 
 void AltaCamarero(t_camarero *c);
-void printCamarero(t_camarero *c);
+void printCamarero(t_camarero c);
 void MostrarCamareros(t_camarero *camareros, int total);
 
 #endif
