@@ -1,6 +1,0 @@
-5
-1 Primer_Plato
-2 Segundo_Plato
-3 Postre
-4 Bebida
-5 Pan
