@@ -15,7 +15,8 @@ typedef struct
 
 void AltaProducto(t_producto *p, t_categoria c[],int totalCat);
 void EditarProducto(t_producto p[],t_categoria c[],int totalCat);
-void MostrarProductos(t_producto *p, int total);
+void MostrarProductos(t_producto p[], int total);
+void EliminarProducto(t_producto p[], int total);
 
 void prueba();
 

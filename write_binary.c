@@ -30,6 +30,27 @@ void EscribirCamarero(t_camarero c[], int total)
 	}
 }
 
+void EscribirCategoria(t_categoria c[], int total)
+{
+	FILE *f = fopen("categorias.txt","w");
+
+	if (!f)
+	{
+		printf("No se ha podido abrir el fichero\n");
+	}
+	else
+	{
+		fputc(total,f);
+		fprintf(f,"\n");
+		for (int i=0;i<total;i++)
+		{
+			fprintf(f,"%d %s %d",c[i].id,c[i].nombre,c[i].orden);
+			fprintf(f, "\n");
+		}
+		fclose(f);
+	}
+}
+
 void EscribirProducto(t_producto p[], int total)
 {
 	FILE *f = fopen("productos.txt","w");

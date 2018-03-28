@@ -8,11 +8,11 @@
 
 #define MAX_LEN 20
 
-void AltaCamarero(t_camarero *c)
+void AltaCamarero(t_camarero *c,t_camarero lista[],int total)
 {
 	char str [MAX_LEN];
 	char frmt_str [MAX_LEN];
-	int size;
+	int size,dni,unica;
 
 	printf("Nombre: \n");
 	fgets(str,MAX_LEN,stdin);
@@ -36,13 +36,20 @@ void AltaCamarero(t_camarero *c)
 	do
 	{
 		fgets(str,20,stdin);
-		sscanf(str,"%d",&c->dni);
+		sscanf(str,"%d",&dni);
 		clear_if_needed(str);
+		unica = ClaveUnica(dni,lista,total);
+		if (unica!=0)
+		{
+			printf("Error. DNI ya existente. \n");
+		}
 		if (strlen(str)!=9)
 		{
 			printf("Error. Introducir los 8 digitos.\n");
 		}
-	} while (strlen(str)!=9);
+	} while ((strlen(str)!=9)||(unica!=0));
+	sscanf(str,"%d",&c->dni);
+	clear_if_needed(str);
 
 	printf("Telefono: \n");
 	do
@@ -55,13 +62,11 @@ void AltaCamarero(t_camarero *c)
 			printf("Error. Introducir los 9 digitos.\n");
 		}
 	} while (strlen(str)!=10);
-
-	printf("%s %s, dni: %d y tel: %d \n", c->apellido, c->nombre, c->dni, c->tel);
 }
 
 void printCamarero(t_camarero c)
 {
-	printf("%s %s, dni: %d, tel: %d\n", c.nombre, c.apellido, c.dni, c.tel);
+	printf("%s %s, dni: %d, tel: %d\n",_AEspacio(c.nombre),_AEspacio(c.apellido), c.dni, c.tel);
 }
 
 void MostrarCamareros(t_camarero *c, int total)
@@ -70,6 +75,17 @@ void MostrarCamareros(t_camarero *c, int total)
 	for (int i=0; i<total; i++)
 	{
 		printCamarero(c[i]);
-		//printf("%s %s, dni: %d, tel: %d\n", c[i].nombre, c[i].apellido, c[i].dni, c[i].tel);
 	}
+}
+
+int ClaveUnica (int dni,t_camarero *c,int total)
+{
+	for (int i=0; i<total; i++)
+	{
+		if (c[i].dni == dni)
+		{
+			return 1;
+		}
+	}
+	return 0;
 }

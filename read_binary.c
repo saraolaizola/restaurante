@@ -12,7 +12,6 @@
 
 //CAMAREROS
 
-
 void LeerCamareros(t_camarero c[])
 {
 	FILE * file;	
@@ -86,7 +85,7 @@ void LeerCategorias(t_categoria c[])
 
 	if (!f)
 	{
-		printf("No se ha podido abrir el fichero\n");
+		printf("Error al abrir el fichero\n");
 	}
 	else
 	{
@@ -127,7 +126,7 @@ int totalCategorias()
 	}
 	else
 	{
-		num = (fgetc(file)-48);
+		num = fgetc(file);
 	}
 	return num;
 }

@@ -11,6 +11,8 @@ typedef struct
 	
 } t_categoria;
 
+void AltaCategoria(t_categoria *c,t_categoria categorias[],int total);
+void OrdenarCategorias(t_categoria c[], int orden, int total);
 void MostrarCategorias(t_categoria categoria[], int total);
 char * Categoria (t_categoria c[],int num, int total);
 
