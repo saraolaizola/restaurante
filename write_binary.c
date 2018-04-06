@@ -67,7 +67,7 @@ void EscribirProducto(t_producto p[], int total)
 		fprintf(f,"\n");
 		for (int i=0;i<total;i++)
 		{
-			fprintf(f,"%s %f %s",p[i].nombre,p[i].precio,p[i].categoria);
+			fprintf(f,"%d %s %f %s",p[i].id,p[i].nombre,p[i].precio,p[i].categoria);
 			fprintf(f, "\n");
 		}
 		fclose(f);

@@ -19,6 +19,8 @@ int main (int argc, char *argv[])
 
 	int c,n,m,dni,mesa;
 
+	int **cuentas;
+
 	//INICIALIZAMOS LOS ARRAY
 	int totalC = totalCamareros();
 	t_camarero *camareros = (t_camarero *) malloc(totalC * sizeof(t_camarero));
@@ -32,7 +34,7 @@ int main (int argc, char *argv[])
 	t_producto *productos = (t_producto *) malloc(totalP * sizeof(t_producto));
 	LeerProductos(productos);
 
-	int *cuentas[MESAS];
+	cuentas = (int **) malloc (MESAS * sizeof (int*));
 
 	int totalCom = totalComandas();
 	t_comanda *comandas = (t_comanda *) malloc(totalCom * sizeof(t_comanda));
@@ -62,7 +64,9 @@ int main (int argc, char *argv[])
 					mesa = getNumeroMesa();
 					if (MesaOcupada(cuentas,mesa,1)==0)
 					{
-						AtenderMesa();
+						cuentas[mesa] = (int*) malloc (1 *sizeof (int));
+						cuentas[mesa][0] = 0;
+						AtenderMesa(cuentas,mesa,productos,totalP,categorias,totalCat);
 					}
 					break;
 
@@ -70,12 +74,11 @@ int main (int argc, char *argv[])
 					mesa = getNumeroMesa();
 					if (MesaOcupada(cuentas,mesa,0)==1)
 					{
-						AtenderMesa();
+						AtenderMesa(cuentas,mesa,productos,totalP,categorias,totalCat);
 					}
 					break;
 
 					case 3:
-					//Pedir valoracion del servicio (1-10)
 					//Calcular total
 					//Imprimir comanda
 					comandas = (t_comanda *) realloc (comandas, (totalCom+1) * sizeof(t_comanda));
@@ -138,20 +141,20 @@ int main (int argc, char *argv[])
 					break;
 
 					case 3:
-					 categorias = (t_categoria *) realloc (categorias, (totalCat+1) * sizeof(t_categoria));
+					categorias = (t_categoria *) realloc (categorias, (totalCat+1) * sizeof(t_categoria));
 					AltaCategoria(&categorias[totalCat],categorias,totalCat);
 					totalCat++;
 					break;
 
 					case 4:	
 					productos = (t_producto *) realloc (productos, (totalP+1) * sizeof(t_producto));
-					AltaProducto(&productos[totalP],categorias,totalCat);
+					AltaProducto(&productos[totalP],totalP,categorias,totalCat);
 					totalP++;
 					break;
 
 					case 5:
 					MostrarProductos(productos,totalP);
-					EditarProducto(productos,categorias,totalCat);
+					EditarProducto(productos,totalP,categorias,totalCat);
 					break;
 
 					case 6:

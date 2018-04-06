@@ -153,6 +153,7 @@ void LeerProductos(t_producto p[])
 		char nombre [20];
 		char categoria [20];
 		float precio;
+		int id;
 
 		int primero=0;
 		int i=0;
@@ -161,7 +162,8 @@ void LeerProductos(t_producto p[])
 		{
 			if (primero!=0)
 			{
-				sscanf(str, "%s %f %s",nombre,&precio,categoria);
+				sscanf(str, "%d %s %f %s",&id,nombre,&precio,categoria);
+				p[i].id = id;
 				p[i].nombre = (char *) malloc ((strlen(nombre)+1) * sizeof(char));
 				strcpy (p[i].nombre, nombre);
 				p[i].precio = precio;

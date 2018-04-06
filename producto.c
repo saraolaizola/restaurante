@@ -9,17 +9,18 @@
 
 #define MAX_LEN 50
 
-void AltaProducto(t_producto *p, t_categoria c[],int totalCat)
+void AltaProducto(t_producto *p, int totalP,t_categoria c[],int totalCat)
 {
 	p->nombre = NULL;
 	p->precio = 0;
 	p->categoria = NULL;
 
-
 	char str [MAX_LEN];
 	char frmt_str [MAX_LEN];
 	int opcion;
 	int size;
+
+	p->id = totalP;
 
 	printf("Nombre: \n");
 	fgets(str,MAX_LEN,stdin);
@@ -55,7 +56,7 @@ void printProducto(t_producto p)
 	strcpy (categoria,p.categoria);
 	_AEspacio (nombre);
 	_AEspacio (categoria);
-	printf("%s %.2f%c %s\n",nombre,p.precio,36,categoria);
+	printf("%s %.2f%c \n",nombre,p.precio,36);
 }
 
 
@@ -68,7 +69,7 @@ void MostrarProductos (t_producto p[], int total)
 	}
 }
 
-void EditarProducto(t_producto p[],t_categoria c[],int totalCat)
+void EditarProducto(t_producto p[],int totalP,t_categoria c[],int totalCat)
 {
 	int num;
 	char str [3];
@@ -78,7 +79,7 @@ void EditarProducto(t_producto p[],t_categoria c[],int totalCat)
 	clear_if_needed(str);
 	sscanf(str,"%d",&num);
 
-	AltaProducto(&p[num],c,totalCat);
+	AltaProducto(&p[num],totalP,c,totalCat);
 }
 
 void EliminarProducto(t_producto p[], int total)
