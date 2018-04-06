@@ -79,7 +79,7 @@ int main (int argc, char *argv[])
 					//Calcular total
 					//Imprimir comanda
 					comandas = (t_comanda *) realloc (comandas, (totalCom+1) * sizeof(t_comanda));
-					//Guardar la comanda 
+					AltaComanda(&comandas[totalCom],dni);
 					totalCom++;
 					break;
 				}

@@ -41,7 +41,7 @@ int MesaOcupada(int *cuentas[],int mesa,int nueva)
 
 void AtenderMesa()
 {
-	
+		
 }
 
 void MostrarProductosxCategoria (t_producto p[],int totalP,int numCat,t_categoria c[],int totalCat)

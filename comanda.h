@@ -12,6 +12,6 @@ typedef struct
 
 } t_comanda;
 
-void altaComanda();
+void AltaComanda(t_comanda *c,int dni);
 
 #endif
