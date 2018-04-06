@@ -57,7 +57,8 @@ int main (int argc, char *argv[])
 				switch (n)
 				{
 					case 1:
-					//Anyadir una nueva comanda
+					NuevaCuenta(cuentas);
+					
 					break;
 
 					case 2:

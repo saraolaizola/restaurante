@@ -121,6 +121,7 @@ void cambiarClave()
 	{
 		printf("No se ha podido abrir el fichero\n");
 	}
+	else
 	{
 		f = fopen("clave.txt","w");
 
@@ -130,7 +131,23 @@ void cambiarClave()
 	}
 }
 
-int NuevaMesa ()
+int NuevaCuenta (int *cuentas[])
 {
+	int mesa;
+	char str[5];
 
+	printf("Introducir numero de la nueva mesa: \n");
+	fgets(str,5,stdin);
+	sscanf(str,"%d",&mesa);
+	clear_if_needed(str);
+
+	if (!cuentas[mesa])
+	{
+		return mesa;
+	}
+	else
+	{
+		printf("Error. Mesa ocupada\n");
+		return 0;
+	}
 }
