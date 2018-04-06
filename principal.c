@@ -9,12 +9,13 @@
 #include <stdlib.h>
 
 #define PARAM "admin"
+#define MESAS 20
 
 int main (int argc, char *argv[])
 {
 	setvbuf(stdout, 0, _IONBF, 0);
 
-	int c,n,m;
+	int c,n,m,dni;
 
 	//INICIALIZAMOS LOS ARRAY
 	int totalC = totalCamareros();
@@ -29,44 +30,51 @@ int main (int argc, char *argv[])
 	t_producto *productos = (t_producto *) malloc(totalP * sizeof(t_producto));
 	LeerProductos(productos);
 
+	int *cuentas[MESAS];
+
 	int totalCom = totalComandas();
 	t_comanda *comandas = (t_comanda *) malloc(totalCom * sizeof(t_comanda));
-	LeerProductos(comandas);
+	LeerComandas(comandas);
 	
 	//COMIENZO APLICACION
 	printf("\n **Bienvenido al Restaurante** \n");
 
 	if ((argc < 2)||(strcmp(argv[1], PARAM) != 0))
 	{
-		do
+		dni = getCamarero(camareros,totalC);
+
+		if (dni!=0)
 		{
-			printf("\n 1. Nueva comanda"); 	
-			printf("\n 2. A%cadir a comanda",164);
-			printf("\n 3. Imprimir cuenta");
-			printf("\n 4. Salir");
-
-			n=introducirOpcion(4);
-
-			switch (n)
+			do
 			{
-				case 1:
-				//Anyadir una nueva comanda
-				break;
+				printf("\n 1. Nueva comanda"); 	
+				printf("\n 2. A%cadir a comanda",164);
+				printf("\n 3. Imprimir cuenta");
+				printf("\n 4. Salir");
 
-				case 2:
-				//Anyadir a comanda
-				break;
+				n=introducirOpcion(4);
 
-				case 3:
-				//Pedir valoracion del servicio (1-10)
-				//Calcular total
-				//Imprimir comanda
-				comandas = (t_comanda *) realloc (comandas, (totalCom+1) * sizeof(t_comanda));
-				//Guardar la comanda 
-				totalCom++;
-				break;
-			}
-		} while (n!=4);
+				switch (n)
+				{
+					case 1:
+					//Anyadir una nueva comanda
+					break;
+
+					case 2:
+					//Anyadir a comanda
+					break;
+
+					case 3:
+					//Pedir valoracion del servicio (1-10)
+					//Calcular total
+					//Imprimir comanda
+					comandas = (t_comanda *) realloc (comandas, (totalCom+1) * sizeof(t_comanda));
+					//Guardar la comanda 
+					totalCom++;
+					break;
+				}
+			} while (n!=4);
+		}
 	}
 	else
 	{

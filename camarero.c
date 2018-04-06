@@ -96,3 +96,25 @@ int ClaveUnica (int dni,t_camarero *c,int total)
 	}
 	return 0;
 }
+
+int getCamarero(t_camarero c[], int total)
+{
+	int dni=0;
+	char str [MAX_LEN];
+
+	printf("\n Introduzca su DNI: \n");
+	fgets(str,10,stdin);
+	sscanf(str,"%d",&dni);
+	clear_if_needed(str);
+
+	for (int i=0; i<total; i++)
+	{
+		if (c[i].dni == dni)
+		{
+			return dni;
+		}
+	}
+
+	printf("\n Error. No coincide con ningun DNI \n");
+	return 0;
+}

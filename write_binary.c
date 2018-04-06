@@ -2,6 +2,7 @@
 #include "utilidades.h"
 #include "categoria.h"
 #include "producto.h"
+#include "comanda.h"
 #include <stdio.h>
 #include <ctype.h>
 #include <math.h>

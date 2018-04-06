@@ -130,3 +130,7 @@ void cambiarClave()
 	}
 }
 
+int NuevaMesa ()
+{
+
+}

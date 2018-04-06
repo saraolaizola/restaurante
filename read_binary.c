@@ -2,6 +2,7 @@
 #include "utilidades.h"
 #include "categoria.h"
 #include "producto.h"
+#include "comanda.h"
 #include "read_binary.h"
 #include "write_binary.h"
 #include <stdio.h>

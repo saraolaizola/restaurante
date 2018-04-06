@@ -4,6 +4,7 @@
 #include "camarero.h"
 #include "producto.h"
 #include "categoria.h"
+#include "comanda.h"
 
 #define DEBUG
 
