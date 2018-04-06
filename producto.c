@@ -109,7 +109,7 @@ void MostrarProductosxCategoria (t_producto p[],int totalP,t_categoria c[],int t
 		
 		for (int i=0;i<totalP;i++)
 		{
-			if (p[i].categoria == str)
+			if (strcmp(str,p[i].categoria)==0)
 			{
 				printProducto(p[i]);
 			}

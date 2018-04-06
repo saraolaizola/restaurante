@@ -28,6 +28,10 @@ int main (int argc, char *argv[])
 	int totalP = totalProductos();
 	t_producto *productos = (t_producto *) malloc(totalP * sizeof(t_producto));
 	LeerProductos(productos);
+
+	int totalCom = totalComandas();
+	t_comanda *comandas = (t_comanda *) malloc(totalCom * sizeof(t_comanda));
+	LeerProductos(comandas);
 	
 	//COMIENZO APLICACION
 	printf("\n **Bienvenido al Restaurante** \n");
@@ -54,7 +58,12 @@ int main (int argc, char *argv[])
 				break;
 
 				case 3:
+				//Pedir valoracion del servicio (1-10)
+				//Calcular total
 				//Imprimir comanda
+				comandas = (t_comanda *) realloc (comandas, (totalCom+1) * sizeof(t_comanda));
+				//Guardar la comanda 
+				totalCom++;
 				break;
 			}
 		} while (n!=4);

@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+//FICHEROS DE TEXTO
 
 void EscribirCamarero(t_camarero c[], int total)
 {
@@ -69,5 +70,24 @@ void EscribirProducto(t_producto p[], int total)
 			fprintf(f, "\n");
 		}
 		fclose(f);
+	}
+}
+
+
+//FICHERO BINARIO 
+
+void EscribirComanda (t_comanda c[], int total)
+{
+	FILE *f = fopen("comandas.bin","wb");
+
+	if (!f)
+	{
+		printf("Error al abrir el fichero\n");
+	}
+	else
+	{
+		fputc(total, f); 
+		printf("%d\n",total);
+		fwrite(c,sizeof(t_comanda),total,f);
 	}
 }

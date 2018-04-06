@@ -10,6 +10,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+//FICHERO DE TEXTO
+
 //CAMAREROS
 
 void LeerCamareros(t_camarero c[])
@@ -180,6 +182,47 @@ int totalProductos()
 	int num=0;
 
 	file = fopen("productos.txt", "r");
+	
+	if (!file)
+	{
+		printf("Error al abrir el fichero\n");
+	}
+	else
+	{
+		num = fgetc(file);
+	}
+	return num;
+}
+
+
+//FICHERO BINARIO
+
+//COMANDAS
+
+void LeerComandas(t_comanda comandas[])
+{
+	FILE * file;	
+	int num;
+
+	file = fopen("comandas.bin", "rb");
+	
+	if (!file)
+	{
+		printf("Error al abrir el fichero\n");
+	}
+	else
+	{
+		num = fgetc(file);	
+		fread(comandas, sizeof(t_comanda), num, file);
+	}
+}
+
+int totalComandas()
+{
+	FILE * file;	
+	int num=0;
+
+	file = fopen("comandas.bin", "rb");
 	
 	if (!file)
 	{

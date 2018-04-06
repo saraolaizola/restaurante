@@ -16,4 +16,7 @@ int totalCategorias();
 void LeerProductos(t_producto productos[]);
 int totalProductos();
 
+void LeerComandas(t_comanda comandas[]);
+int totalComandas();
+
 #endif
