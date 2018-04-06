@@ -2,8 +2,8 @@
 #define _COMANDA_H
 
 typedef struct{
-	char *dni;
-	char *fechayhora;
+	int dni;
+	int fechayhora;
 	float total;
 	float media
 }t_comanda;
