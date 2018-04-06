@@ -41,12 +41,32 @@ void AltaProducto(t_producto *p, t_categoria c[],int totalCat)
 	sscanf(str,"%d",&opcion);
 	clear_if_needed(str);
 	strcpy(str,Categoria(c,opcion,totalCat));
-	//comprobar que no es null 
+	
 	size = strlen(str);
 	p->categoria = (char *) malloc ((size+1) * sizeof(char));
 	strcpy (p->categoria,str);
 }
 
+void printProducto(t_producto p)
+{
+	char *nombre = (char *) malloc ((strlen(p.nombre)+1) * sizeof(char));
+	char *categoria = (char *) malloc ((strlen(p.categoria)+1) * sizeof(char));
+	strcpy (nombre,p.nombre);
+	strcpy (categoria,p.categoria);
+	_AEspacio (nombre);
+	_AEspacio (categoria);
+	printf("%s %.2f%c %s\n",nombre,p.precio,36,categoria);
+}
+
+
+void MostrarProductos (t_producto p[], int total)
+{
+	for (int i=0;i<total;i++)
+	{
+		printf("%d. ",i+1);
+		printProducto(p[i]);
+	}
+}
 
 void EditarProducto(t_producto p[],t_categoria c[],int totalCat)
 {
@@ -59,14 +79,6 @@ void EditarProducto(t_producto p[],t_categoria c[],int totalCat)
 	sscanf(str,"%d",&num);
 
 	AltaProducto(&p[num],c,totalCat);
-}
-
-void MostrarProductos(t_producto *p, int total)
-{
-	for (int i=0; i<total; i++)
-	{
-		printf("%d. %s %.2f%c %s\n",i,_AEspacio(p[i].nombre),p[i].precio,36,_AEspacio(p[i].categoria));
-	}
 }
 
 void EliminarProducto(t_producto p[], int total)
@@ -82,5 +94,25 @@ void EliminarProducto(t_producto p[], int total)
 	for (int i=num;i<(total-1);i++)
 	{
 		p[i]=p[i+1];
+	}
+}
+
+void MostrarProductosxCategoria (t_producto p[],int totalP,t_categoria c[],int totalCat)
+{
+	char str [50];
+	char *nombre;
+	
+	for (int j=1;j<totalCat+1;j++)
+	{
+		strcpy(str,Categoria(c,j,totalCat));
+		nombre = (char *) malloc ((strlen(str)+1) * sizeof(char));
+		
+		for (int i=0;i<totalP;i++)
+		{
+			if (p[i].categoria == str)
+			{
+				printProducto(p[i]);
+			}
+		}	
 	}
 }

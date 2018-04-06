@@ -66,7 +66,14 @@ void AltaCamarero(t_camarero *c,t_camarero lista[],int total)
 
 void printCamarero(t_camarero c)
 {
-	printf("%s %s, dni: %d, tel: %d\n",_AEspacio(c.nombre),_AEspacio(c.apellido), c.dni, c.tel);
+	char *nombre = (char *) malloc ((strlen(c.nombre)+1) * sizeof(char));
+	char *apellido = (char *) malloc ((strlen(c.apellido)+1) * sizeof(char));
+	strcpy (nombre,c.nombre);
+	strcpy (apellido,c.apellido);
+	_AEspacio (nombre);
+	_AEspacio (apellido);
+
+	printf("%s %s, dni: %d, tel: %d\n",nombre,apellido, c.dni, c.tel);
 }
 
 void MostrarCamareros(t_camarero *c, int total)

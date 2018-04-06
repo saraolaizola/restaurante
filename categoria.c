@@ -31,8 +31,8 @@ void AltaCategoria(t_categoria *c,t_categoria categorias[],int total)
 		do 
 		{
 			MostrarCategorias(categorias,total);
-			printf("Orden de la nueva categoria: \n");
-			fgets(str,3,stdin);
+			printf("Orden de la nueva categoria (1-%d):\n",total+1);
+			fgets(str,5,stdin);
 			clear_if_needed(str);
 			sscanf(str,"%d",&orden);
 			if ((orden<0)||(orden>(total+1)))
@@ -40,7 +40,7 @@ void AltaCategoria(t_categoria *c,t_categoria categorias[],int total)
 				printf(" Error. No hay tantas categorias\n");
 			}
 		} while ((orden<0)||(orden>(total+1)));
-		sscanf(str,"%d",&c->orden);
+		c->orden = orden;
 		if ((orden<total)||(orden==total))
 		{
 			OrdenarCategorias(categorias,orden,total);
@@ -70,11 +70,19 @@ void OrdenarCategorias(t_categoria c[], int orden, int total)
 	}
 }
 
+void printCategoria(t_categoria c)
+{
+	char * nombre = (char *) malloc ((strlen(c.nombre)+1) * sizeof(char));
+	strcpy (nombre,c.nombre);
+	_AEspacio (nombre);
+	printf("%d %s\n",c.orden,nombre);
+}
+
 void MostrarCategorias(t_categoria c[], int total)
 {
 	for (int i=0;i<total;i++)
 	{
-		printf("%d %s\n",c[i].orden,_AEspacio(c[i].nombre));
+		printCategoria(c[i]);
 	}
 }
 

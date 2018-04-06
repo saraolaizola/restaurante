@@ -41,7 +41,7 @@ int main (int argc, char *argv[])
 			printf("\n 3. Imprimir cuenta");
 			printf("\n 4. Salir");
 
-			n=introducirOpcion(3);
+			n=introducirOpcion(4);
 
 			switch (n)
 			{
@@ -50,7 +50,7 @@ int main (int argc, char *argv[])
 				break;
 
 				case 2:
-				//Anyadir algo a comanda
+				MostrarProductosxCategoria(productos,totalP,categorias,totalCat);
 				break;
 
 				case 3:
@@ -111,7 +111,7 @@ int main (int argc, char *argv[])
 					break;
 
 					case 3:
-					categorias = (t_categoria *) realloc (categorias, (totalCat+1) * sizeof(t_categoria));
+					 categorias = (t_categoria *) realloc (categorias, (totalCat+1) * sizeof(t_categoria));
 					AltaCategoria(&categorias[totalCat],categorias,totalCat);
 					totalCat++;
 					break;

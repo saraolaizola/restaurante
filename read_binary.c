@@ -39,10 +39,10 @@ void LeerCamareros(t_camarero c[])
 			{
 				sscanf(str, "%s %s %d %d",nombre,apellido,&dni,&tel);
 				c[i].nombre = (char *) malloc ((strlen(nombre)+1) * sizeof(char));
-				_AEspacio (nombre);
+				//_AEspacio (nombre);
 				strcpy (c[i].nombre, nombre);
 				c[i].apellido = (char *) malloc ((strlen(apellido)+1) * sizeof(char));
-				_AEspacio (apellido);
+				//_AEspacio (apellido);
 				strcpy (c[i].apellido, apellido);
 				c[i].dni = dni;
 				c[i].tel = tel;
@@ -89,7 +89,7 @@ void LeerCategorias(t_categoria c[])
 	}
 	else
 	{
-		int orden;
+		int orden,id;
 		char nombre [50];
 		char str [100];
 		int primero=0;
@@ -98,11 +98,11 @@ void LeerCategorias(t_categoria c[])
 		{
 			if (primero!=0)
 			{
-				sscanf(str, "%d %s", &orden, nombre);
-				c[i].orden = orden;
+				sscanf(str, "%d %s %d", &id,nombre,&orden);
+				c[i].id = id;
 				c[i].nombre = (char *) malloc ((strlen(nombre)+1) * sizeof(char));
-				_AEspacio (nombre);
 				strcpy (c[i].nombre, nombre);
+				c[i].orden = orden;
 				i++;
 			}
 			else
@@ -160,11 +160,9 @@ void LeerProductos(t_producto p[])
 			{
 				sscanf(str, "%s %f %s",nombre,&precio,categoria);
 				p[i].nombre = (char *) malloc ((strlen(nombre)+1) * sizeof(char));
-				_AEspacio (nombre);
 				strcpy (p[i].nombre, nombre);
 				p[i].precio = precio;
 				p[i].categoria = (char *) malloc ((strlen(categoria)+1) * sizeof(char));
-				_AEspacio (nombre);
 				strcpy (p[i].categoria, categoria);
 				i++;
 			}
