@@ -96,20 +96,3 @@ void EliminarProducto(t_producto p[], int total)
 		p[i]=p[i+1];
 	}
 }
-
-void MostrarProductosxCategoria (t_producto p[],int totalP,int numCat,t_categoria c[],int totalCat)
-{
-	char str [50];
-	char *nombre;
-	
-	strcpy(str,Categoria(c,numCat,totalCat));
-	nombre = (char *) malloc ((strlen(str)+1) * sizeof(char));
-		
-	for (int i=0;i<totalP;i++)
-	{
-		if (strcmp(str,p[i].categoria)==0)
-		{
-			printProducto(p[i]);
-		}
-	}	
-}

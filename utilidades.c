@@ -130,24 +130,3 @@ void cambiarClave()
 		fclose(f);
 	}
 }
-
-int NuevaCuenta (int *cuentas[])
-{
-	int mesa;
-	char str[5];
-
-	printf("Introducir numero de la nueva mesa: \n");
-	fgets(str,5,stdin);
-	sscanf(str,"%d",&mesa);
-	clear_if_needed(str);
-
-	if (!cuentas[mesa])
-	{
-		return mesa;
-	}
-	else
-	{
-		printf("Error. Mesa ocupada\n");
-		return 0;
-	}
-}

@@ -4,6 +4,8 @@
 #include "read_binary.h"
 #include "utilidades.h"
 #include "categoria.h"
+#include "comanda.h"
+#include "cuenta.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -15,7 +17,7 @@ int main (int argc, char *argv[])
 {
 	setvbuf(stdout, 0, _IONBF, 0);
 
-	int c,n,m,dni;
+	int c,n,m,dni,mesa;
 
 	//INICIALIZAMOS LOS ARRAY
 	int totalC = totalCamareros();
@@ -57,12 +59,19 @@ int main (int argc, char *argv[])
 				switch (n)
 				{
 					case 1:
-					NuevaCuenta(cuentas);
-					
+					mesa = getNumeroMesa();
+					if (MesaOcupada(cuentas,mesa,1)==0)
+					{
+						AtenderMesa();
+					}
 					break;
 
 					case 2:
-					//Anyadir a comanda
+					mesa = getNumeroMesa();
+					if (MesaOcupada(cuentas,mesa,0)==1)
+					{
+						AtenderMesa();
+					}
 					break;
 
 					case 3:

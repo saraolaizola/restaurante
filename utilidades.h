@@ -10,6 +10,4 @@ int introducirOpcion(int opciones);
 int comprobarClave();
 void cambiarClave();
 
-int NuevaCuenta (int *cuentas[]);
-
 #endif
