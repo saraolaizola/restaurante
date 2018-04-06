@@ -54,7 +54,7 @@ int main (int argc, char *argv[])
 				break;
 
 				case 2:
-				MostrarProductosxCategoria(productos,totalP,categorias,totalCat);
+				//Anyadir a comanda
 				break;
 
 				case 3:
