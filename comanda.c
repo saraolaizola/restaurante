@@ -24,3 +24,8 @@ void AltaComanda(t_comanda *c,int dni)
 
     //getTotal() y asignarle a c
 }
+
+void ImprimirComanda (t_producto *prod)
+{
+	
+}

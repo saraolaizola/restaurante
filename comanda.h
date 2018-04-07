@@ -13,5 +13,6 @@ typedef struct
 } t_comanda;
 
 void AltaComanda(t_comanda *c,int dni);
+void ImprimirComanda (t_producto *prod);
 
 #endif

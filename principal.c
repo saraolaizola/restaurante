@@ -35,6 +35,11 @@ int main (int argc, char *argv[])
 	LeerProductos(productos);
 
 	cuentas = (int **) malloc (MESAS * sizeof (int*));
+	for (int i= 0; i<MESAS; i++)
+	{
+		cuentas[mesa] = (int*) malloc (50 *sizeof (int));
+					
+	}
 
 	int totalCom = totalComandas();
 	t_comanda *comandas = (t_comanda *) malloc(totalCom * sizeof(t_comanda));
@@ -64,7 +69,7 @@ int main (int argc, char *argv[])
 					mesa = getNumeroMesa();
 					if (MesaOcupada(cuentas,mesa,1)==0)
 					{
-						cuentas[mesa] = (int*) malloc (1 *sizeof (int));
+						//cuentas[mesa] = (int*) malloc (1 *sizeof (int));
 						cuentas[mesa][0] = 0;
 						AtenderMesa(cuentas,mesa,productos,totalP,categorias,totalCat);
 					}

@@ -60,17 +60,17 @@ void AtenderMesa(int *cuentas[],int mesa,t_producto p[],int totalP,t_categoria c
 			
 			if ((totalPxCat+1)!=opcion)
 			{
-				cuentas[mesa] = (int *) realloc (cuentas, (posicion+3) * sizeof(int));
+				//cuentas[mesa] = (int *) realloc (cuentas, (posicion+3) * sizeof(int));
 				id = getProducto(p,totalP,i,c,totalCat,opcion);
 				posicion++;
-				//cuentas[mesa][posicion]=id; 	NO VA
+				cuentas[mesa][posicion]=id; 	
 			
 				printf("Cantidad: \n");
 				fgets(str,4,stdin);
 				clear_if_needed(str);
 				sscanf(str,"%d",&cantidad);
 				posicion++;
-				//cuentas[mesa][posicion]=cantidad;	
+				cuentas[mesa][posicion]=cantidad;	
 			}
 		} while ((totalPxCat+1)!=opcion);
 	}
@@ -129,6 +129,35 @@ int getProducto(t_producto p[],int totalP,int numCat,t_categoria c[],int totalCa
 		}
 	}	
 	return id;
+}
+
+float getPrecio(t_producto p[],int totalP,int numCat,t_categoria c[],int totalCat, int opcion)
+{
+	char str [50];
+	char *nombre;
+	int num=1;
+	float precio;
+
+	strcpy(str,Categoria(c,numCat,totalCat));
+	_AEspacio(str);
+	nombre = (char *) malloc ((strlen(str)+1) * sizeof(char));
+	strcpy(nombre,str);
+
+	for (int i=0;i<totalP;i++)
+	{
+		if (strcmp(nombre,_AEspacio(p[i].categoria))==0)
+		{
+			printf("numero %d\n",num);
+
+			if (num==opcion)
+			{
+				precio = p[i].precio;
+			}
+			num++;
+		}
+	}	
+	return precio;
+
 }
 
 
