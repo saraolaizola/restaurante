@@ -64,7 +64,12 @@ void ImprimirComanda (t_producto *prod,int totP, int **cuentas, int mesa)
     	
     }
 
+}
 
-
-
+void mediaCamarero(t_comanda *c, int totC, t_camarero *camar, int totCam)
+{
+	for (int i =0; i< totC; i++)
+	{
+		
+	}
 }
