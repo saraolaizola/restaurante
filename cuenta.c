@@ -41,12 +41,12 @@ int MesaOcupada(int *cuentas[],int mesa,int nueva)
 
 void AtenderMesa(int *cuentas[],int mesa,t_producto p[],int totalP,t_categoria c[],int totalCat)
 {
-	int opcion,id,totalPxCat,cantidad;
+	int opcion,id,totalPxCat,cantidad, precio;
 	char str [4];
 
 	printf("%d\n", cuentas[mesa][0]);
 
-	int posicion = (cuentas[mesa][0])*2;
+	int posicion = (cuentas[mesa][0]);
 
 	for (int i=1;i<totalCat+1;i++)
 	{
@@ -65,15 +65,18 @@ void AtenderMesa(int *cuentas[],int mesa,t_producto p[],int totalP,t_categoria c
 				posicion++;
 				cuentas[mesa][posicion]=id; 	
 			
-				printf("Cantidad: \n");
-				fgets(str,4,stdin);
-				clear_if_needed(str);
-				sscanf(str,"%d",&cantidad);
+
+				//printf("Cantidad: \n");
+				//fgets(str,4,stdin);
+				//clear_if_needed(str);
+				//sscanf(str,"%d",&cantidad);
 				posicion++;
-				cuentas[mesa][posicion]=cantidad;	
+				precio= getPrecio(p,totalP,i,c,totalCat,opcion);
+				cuentas[mesa][posicion]=precio;	
 			}
 		} while ((totalPxCat+1)!=opcion);
 	}
+	cuentas[mesa][0]=posicion;
 }
 
 int MostrarProductosxCategoria (t_producto p[],int totalP,int numCat,t_categoria c[],int totalCat)

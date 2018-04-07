@@ -37,7 +37,8 @@ int main (int argc, char *argv[])
 	cuentas = (int **) malloc (MESAS * sizeof (int*));
 	for (int i= 0; i<MESAS; i++)
 	{
-		cuentas[mesa] = (int*) malloc (50 *sizeof (int));
+		printf("Hola\n");
+		cuentas[i] = (int*) malloc (50 *sizeof (int));
 					
 	}
 
@@ -84,11 +85,12 @@ int main (int argc, char *argv[])
 					break;
 
 					case 3:
-					//Calcular total
-					//Imprimir comanda
+					
+					mesa=getNumeroMesa();
 					comandas = (t_comanda *) realloc (comandas, (totalCom+1) * sizeof(t_comanda));
-					AltaComanda(&comandas[totalCom],dni);
+					AltaComanda(&comandas[totalCom],dni, cuentas, mesa);
 					totalCom++;
+					ImprimirComanda(productos,totalP, cuentas, mesa);
 					break;
 				}
 			} while (n!=4);
