@@ -114,13 +114,13 @@ int getProducto(t_producto p[],int totalP,int numCat,t_categoria c[],int totalCa
 	int id;
 
 	strcpy(str,Categoria(c,numCat,totalCat));
-	_AEspacio(str);
+	
 	nombre = (char *) malloc ((strlen(str)+1) * sizeof(char));
 	strcpy(nombre,str);
 
 	for (int i=0;i<totalP;i++)
 	{
-		if (strcmp(nombre,_AEspacio(p[i].categoria))==0)
+		if (strcmp(nombre,p[i].categoria)==0)
 		{
 			printf("numero %d\n",num);
 
@@ -142,13 +142,13 @@ float getPrecio(t_producto p[],int totalP,int numCat,t_categoria c[],int totalCa
 	float precio;
 
 	strcpy(str,Categoria(c,numCat,totalCat));
-	_AEspacio(str);
+	
 	nombre = (char *) malloc ((strlen(str)+1) * sizeof(char));
 	strcpy(nombre,str);
 
 	for (int i=0;i<totalP;i++)
 	{
-		if (strcmp(nombre,_AEspacio(p[i].categoria))==0)
+		if (strcmp(nombre,p[i].categoria)==0)
 		{
 			printf("numero %d\n",num);
 
