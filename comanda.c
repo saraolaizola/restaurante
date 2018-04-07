@@ -66,10 +66,40 @@ void ImprimirComanda (t_producto *prod,int totP, int **cuentas, int mesa)
 
 }
 
-void mediaCamarero(t_comanda *c, int totC, t_camarero *camar, int totCam)
+void mediaCamarero(t_comanda *comanda, int totComanda, t_camarero *camarero, int totCamarero)
 {
-	for (int i =0; i< totC; i++)
+    int dni;
+    float total;
+    int cantidad;
+
+    printf("La nota media de los camareros es la siguiente:\n");
+    
+	for (int i =0; i< totCamarero; i++)
 	{
-		
+        dni= camarero [i];
+        cantidad=0;
+        total=0,0;
+
+		for (int j=0; j<totComanda; j++) 
+        {
+            if(dni==comanda[j].dni)
+            {
+                cantidad++;
+
+                total += comanda[j].media;
+                
+            }
+        }
+
+        total= total/cantidad;
+
+        printf("%s %s %f\n",camarero[i].nombre, camarero[i].apellido, total );
+
+
+
+
+
+
+
 	}
 }

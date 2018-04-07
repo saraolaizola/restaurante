@@ -120,7 +120,7 @@ int main (int argc, char *argv[])
 					do
 					{
 						printf("\n 1. Mostrar Camareros");
-						printf("\n 2.");
+						printf("\n 2. Mostrar nota media camareros");
 						printf("\n 3."); 
 						printf("\n 4.");
 						printf("\n 5.");
@@ -134,6 +134,7 @@ int main (int argc, char *argv[])
 							break;
 
 							case 2:
+							mediaCamarero(camareros,totalC,comandas,totalCom);
 							break;
 
 							//...
@@ -182,11 +183,13 @@ int main (int argc, char *argv[])
 	EscribirCamarero(camareros,totalC);
 	EscribirCategoria(categorias,totalCat);
 	EscribirProducto(productos,totalP);
+	EscribirComanda (comandas, totalCom);
 
 	free(camareros);
 	free(categorias);
 	free(productos);
-
+	free(comandas);
+	
 	camareros=0;
 	categorias=0;
 	productos=0;
