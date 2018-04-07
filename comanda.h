@@ -5,6 +5,7 @@
 
 #include "producto.h"
 #include "categoria.h"
+#include "camarero.h"
 
 typedef struct
 {

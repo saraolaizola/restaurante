@@ -134,7 +134,7 @@ int main (int argc, char *argv[])
 							break;
 
 							case 2:
-							mediaCamarero(camareros,totalC,comandas,totalCom);
+							mediaCamarero(comandas,totalCom, camareros,totalC);
 							break;
 
 							//...
@@ -189,7 +189,7 @@ int main (int argc, char *argv[])
 	free(categorias);
 	free(productos);
 	free(comandas);
-	
+
 	camareros=0;
 	categorias=0;
 	productos=0;

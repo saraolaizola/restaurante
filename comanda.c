@@ -1,6 +1,7 @@
 #include "comanda.h"
 #include "utilidades.h"
 #include "producto.h"
+#include "camarero.h"
 #include <stdio.h>
 #include <ctype.h>
 #include <math.h>
@@ -73,10 +74,10 @@ void mediaCamarero(t_comanda *comanda, int totComanda, t_camarero *camarero, int
     int cantidad;
 
     printf("La nota media de los camareros es la siguiente:\n");
-    
+
 	for (int i =0; i< totCamarero; i++)
 	{
-        dni= camarero [i];
+        dni= camarero [i].dni;
         cantidad=0;
         total=0,0;
 
