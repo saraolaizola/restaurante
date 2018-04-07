@@ -68,6 +68,19 @@ char* _AEspacio (char* input)
    	return input;
 }
 
+char* ComaAPunto (char* input)                                         
+{
+    int i;
+   	for (i = 0; i<strlen(input); i++)          
+    {
+        if (input[i]==',')  
+        {
+        	input[i]='.';
+        }                                           
+    }
+   	return input;
+}
+
 int comprobarClave()
 {
 	FILE *f;

@@ -12,6 +12,7 @@
 
 #define PARAM "admin"
 #define MESAS 20
+#define POSICIONES 50 //dimension bertical array multidimensional
 
 int main (int argc, char *argv[])
 {
@@ -37,9 +38,8 @@ int main (int argc, char *argv[])
 	cuentas = (int **) malloc (MESAS * sizeof (int*));
 	for (int i= 0; i<MESAS; i++)
 	{
-		printf("Hola\n");
-		cuentas[i] = (int*) malloc (50 *sizeof (int));
-					
+		cuentas[i] = (int*) malloc (POSICIONES *sizeof (int));
+		cuentas[i][0] = 0; 
 	}
 
 	int totalCom = totalComandas();
@@ -67,17 +67,16 @@ int main (int argc, char *argv[])
 				switch (n)
 				{
 					case 1:
-					mesa = getNumeroMesa();
+					mesa = getNumeroMesa(MESAS);
 					if (MesaOcupada(cuentas,mesa,1)==0)
 					{
 						//cuentas[mesa] = (int*) malloc (1 *sizeof (int));
-						cuentas[mesa][0] = 0;
 						AtenderMesa(cuentas,mesa,productos,totalP,categorias,totalCat);
 					}
 					break;
 
 					case 2:
-					mesa = getNumeroMesa();
+					mesa = getNumeroMesa(MESAS);
 					if (MesaOcupada(cuentas,mesa,0)==1)
 					{
 						AtenderMesa(cuentas,mesa,productos,totalP,categorias,totalCat);
@@ -85,12 +84,19 @@ int main (int argc, char *argv[])
 					break;
 
 					case 3:
-					
-					mesa=getNumeroMesa();
-					comandas = (t_comanda *) realloc (comandas, (totalCom+1) * sizeof(t_comanda));
-					AltaComanda(&comandas[totalCom],dni, cuentas, mesa);
-					totalCom++;
-					ImprimirComanda(productos,totalP, cuentas, mesa);
+					mesa=getNumeroMesa(MESAS);
+					if (MesaOcupada(cuentas,mesa,0)==1)
+					{
+						comandas = (t_comanda *) realloc (comandas, (totalCom+1) * sizeof(t_comanda));
+						AltaComanda(&comandas[totalCom],dni, cuentas, mesa);
+						totalCom++;
+
+						ImprimirCuenta(productos,totalP, cuentas, mesa);
+						for (int i=0;i<POSICIONES;i++)
+						{
+							cuentas[mesa][i]=0;
+						}
+					}
 					break;
 				}
 			} while (n!=4);
@@ -119,8 +125,8 @@ int main (int argc, char *argv[])
 					case 1:
 					do
 					{
-						printf("\n 1. Mostrar Camareros");
-						printf("\n 2. Mostrar nota media camareros");
+						printf("\n 1. Lista de los camareros");
+						printf("\n 2. Nota media camareros");
 						printf("\n 3."); 
 						printf("\n 4.");
 						printf("\n 5.");
