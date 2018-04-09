@@ -63,6 +63,7 @@ void MostrarProductos (t_producto p[], int total)
 	{
 		printf("%d. ",i+1);
 		printProducto(p[i]);
+		printf("\n");
 	}
 }
 
@@ -71,8 +72,7 @@ void EditarProducto(t_producto p[],int totalP,t_categoria c[],int totalCat)
 	int num;
 	char str [3];
 
-	printf("\n Introduzca el numero del producto a modificar:\n");
-	num = introducirOpcion(totalP);
+	num = introducirOpcion(totalP)-1;
 
 	AltaProducto(&p[num],totalP,c,totalCat);
 }
@@ -82,8 +82,7 @@ void EliminarProducto(t_producto p[], int total)
 	int num;
 	char str [5];
 
-	printf("\n Introduzca el numero del producto a eliminar:\n");
-	num = introducirOpcion(total);
+	num = introducirOpcion(total)-1;
 
 	for (int i=num;i<(total-1);i++)
 	{

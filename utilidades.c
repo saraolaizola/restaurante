@@ -99,11 +99,12 @@ float pedirFloat ()
 	char str[MAX_LEN];
 	int num,lenght,punto;
 	float input=0;
-	punto=0;
-	num=0;
 
 	do
 	{
+		num=0;
+		punto=0;
+
 		fgets(str,50,stdin);
 		
 		clear_if_needed(str);
@@ -123,7 +124,7 @@ float pedirFloat ()
 		if ((num!=0)||(punto>1))
 			printf("Error. Asegurate de introducir un numero\n");
 
-	} while (num!=0);
+	} while ((num!=0)||(punto>1));
 	
 	sscanf(str,"%f",&input);
 
@@ -133,18 +134,22 @@ float pedirFloat ()
 int pedirNumero ()
 {
 	char str[MAX_LEN];
-	int input,lenght,num;
-	num=0;
+	int input,lenght,num;;
 
 	do
 	{
+		num=0;
 		fgets(str,50,stdin);
 		lenght = strlen (str)-1;
 
 		for (int i=0;i<lenght;i++)
 		{
 			if (!isdigit(str[i]))
+			{
 				num=1;
+				break;
+			}	
+
 		}
 		if (num!=0)
 			printf("Error. Asegurate de introducir un numero\n");

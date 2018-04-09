@@ -88,7 +88,6 @@ void EscribirComanda (t_comanda c[], int total)
 	else
 	{
 		fputc(total, f); 
-		printf("%d\n",total);
 		fwrite(c,sizeof(t_comanda),total,f);
 	}
 }
