@@ -2,6 +2,7 @@
 #include "producto.h"
 #include "categoria.h"
 #include "utilidades.h"
+
 #include <stdio.h>
 #include <ctype.h>
 #include <math.h>
@@ -11,26 +12,20 @@
 
 int getNumeroMesa(int MESAS)
 {
-	int mesa;
+	int mesa,n;
 	char str[5];
 	
 	printf("Introducir numero de la mesa (1-%d)\n",MESAS);
 	
 	do
-	{	
-		fgets(str,5,stdin);
-		sscanf(str,"%d",&mesa);
-		clear_if_needed(str);
-
-		if((mesa<0)||(mesa>MESAS))
+	{
+		mesa = pedirNumero();
+		if ((mesa<0)||(mesa>MESAS))
 		{
-			printf("Error. Introducir un valor valido\n");
+			printf("Error. Introducir valor valido\n");
 		}
-
 	} while ((mesa<0)||(mesa>MESAS));
-
 	mesa = mesa-1; 
-
 	return mesa;
 }
 
@@ -56,7 +51,7 @@ int MesaOcupada(int *cuentas[],int mesa,int nueva)
 
 void AtenderMesa(int *cuentas[],int mesa,t_producto p[],int totalP,t_categoria c[],int totalCat)
 {
-	int opcion,id,totalPxCat,cantidad, precio;
+	int opcion,id,totalPxCat,cantidad;
 	char str [4];
 
 	int posicion = (cuentas[mesa][0]);
@@ -67,24 +62,19 @@ void AtenderMesa(int *cuentas[],int mesa,t_producto p[],int totalP,t_categoria c
 		{
 			totalPxCat = MostrarProductosxCategoria(p,totalP,i,c,totalCat);
 			printf(" Seleccionar opcion: \n");
-			fgets(str,4,stdin);
-			clear_if_needed(str);
-			sscanf(str,"%d",&opcion);
+			opcion = pedirNumero();
 			
 			if ((totalPxCat+1)!=opcion)
 			{
-				//cuentas[mesa] = (int *) realloc (cuentas, (posicion+3) * sizeof(int));
 				id = getProducto(p,totalP,i,c,totalCat,opcion);
 				posicion++;
 				cuentas[mesa][posicion]=id; 	
 			
-				//printf("Cantidad: \n");
-				//fgets(str,4,stdin);
-				//clear_if_needed(str);
-				//sscanf(str,"%d",&cantidad);
 				posicion++;
-				precio= getPrecio(p,totalP,i,c,totalCat,opcion);
-				cuentas[mesa][posicion]=precio;	
+				printf(" Cantidad: \n");
+				cantidad = pedirNumero();
+				//precio= getPrecio(p,totalP,i,c,totalCat,opcion);
+				cuentas[mesa][posicion]=cantidad;	
 			}
 		} while ((totalPxCat+1)!=opcion);
 	}
@@ -104,8 +94,9 @@ int MostrarProductosxCategoria (t_producto p[],int totalP,int numCat,t_categoria
 	strcpy(categoria,str);
 	strcpy(nombre,str);
 	
+	linea();
 	_AEspacio(nombre);
-	printf(" ** %s **\n\n",nombre);
+	printf("\n     ** %s **\n\n",nombre);
 
 	for (int i=0;i<totalP;i++)
 	{
@@ -113,6 +104,7 @@ int MostrarProductosxCategoria (t_producto p[],int totalP,int numCat,t_categoria
 		{
 			printf(" %d. ",num);
 			printProducto(p[i]);
+			printf("\n");
 			num++;
 		}
 	}	
@@ -175,12 +167,12 @@ float getPrecio(t_producto p[],int totalP,int numCat,t_categoria c[],int totalCa
 
 void ImprimirCuenta (t_producto *prod,int totP, int **cuentas, int mesa)
 {
-	int posicion, id;
+	int posicion,id,cantidad;
 	float total;
 	time_t now;
     struct tm *tm;
 
-   linea();
+   	linea();
 	printf("\n ** RESTAURANTE MISAJO ** \n");
 	printf("   Cuenta de la mesa %d \n", mesa+1);
 
@@ -195,6 +187,7 @@ void ImprimirCuenta (t_producto *prod,int totP, int **cuentas, int mesa)
 	for(int i=1; i<posicion+1; i++)
     {
     	id=cuentas[mesa][i];
+    	cantidad=cuentas[mesa][i+1];
     	i++;
     	for (int j=0; j<totP; j++)
     	{
@@ -202,12 +195,13 @@ void ImprimirCuenta (t_producto *prod,int totP, int **cuentas, int mesa)
     		{
     			printf(" - ");
     			printProducto(prod[j]);
+    			printf(" (x%d) %.2f%c \n",cantidad,prod[j].precio*cantidad,36);
     		}
     	}	
     }
-    total = totalCuenta(cuentas,mesa);
+    total = totalCuenta(cuentas,mesa,prod,totP);
     linea();
-    printf("     TOTAL = %.2f \n",total);
+    printf("     TOTAL = %.2f%c \n",total,36);
    	linea();
 }
 
@@ -216,14 +210,23 @@ void linea()
 	printf("\n -------------------------\n");
 }
 
-float totalCuenta(int **cuentas, int mesa)
+float totalCuenta(int **cuentas, int mesa, t_producto *productos, int totalP)
 {
 	float total=0;
 	int posicion = cuentas[mesa][0];
+	int id,cantidad;
 
     for(int i=1; i<posicion+1; i++)
     {
-    	total+=cuentas[mesa][i+1];
+    	id = cuentas[mesa][i];
+    	cantidad = cuentas[mesa][i+1];
+    	for (int j=0;j<totalP;j++)
+    	{
+    		if (id==productos[j].id)
+    		{
+    			total += productos[j].precio * cantidad;
+    		}
+    	}
     	i++;
     }
 

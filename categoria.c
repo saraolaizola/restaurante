@@ -20,6 +20,7 @@ void AltaCategoria(t_categoria *c,t_categoria categorias[],int total)
 	printf("Nombre: \n");
 	fgets(str,MAX_LEN,stdin);
 	EspacioA_(str);
+	toUpper(str);
 	sscanf(str, "%s",frmt_str);
 	clear_if_needed(str);
 	size = strlen(frmt_str);
@@ -37,7 +38,7 @@ void AltaCategoria(t_categoria *c,t_categoria categorias[],int total)
 			sscanf(str,"%d",&orden);
 			if ((orden<0)||(orden>(total+1)))
 			{
-				printf(" Error. No hay tantas categorias\n");
+				printf("Error. No hay tantas categorias\n");
 			}
 		} while ((orden<0)||(orden>(total+1)));
 		c->orden = orden;

@@ -14,6 +14,6 @@ float getPrecio(t_producto p[],int totalP,int numCat,t_categoria c[],int totalCa
 
 void linea();
 void ImprimirCuenta (t_producto *prod,int totP, int **cuentas, int mesa);
-float totalCuenta(int **cuentas, int mesa);
+float totalCuenta(int **cuentas, int mesa, t_producto *productos, int totalP);
 
 #endif

@@ -70,7 +70,6 @@ int main (int argc, char *argv[])
 					mesa = getNumeroMesa(MESAS);
 					if (MesaOcupada(cuentas,mesa,1)==0)
 					{
-						//cuentas[mesa] = (int*) malloc (1 *sizeof (int));
 						AtenderMesa(cuentas,mesa,productos,totalP,categorias,totalCat);
 					}
 					break;
@@ -88,7 +87,7 @@ int main (int argc, char *argv[])
 					if (MesaOcupada(cuentas,mesa,0)==1)
 					{
 						comandas = (t_comanda *) realloc (comandas, (totalCom+1) * sizeof(t_comanda));
-						AltaComanda(&comandas[totalCom],dni, cuentas, mesa);
+						AltaComanda(&comandas[totalCom],dni, cuentas, mesa,productos,totalP);
 						totalCom++;
 
 						ImprimirCuenta(productos,totalP, cuentas, mesa);

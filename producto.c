@@ -25,6 +25,7 @@ void AltaProducto(t_producto *p, int totalP,t_categoria c[],int totalCat)
 	printf("Nombre: \n");
 	fgets(str,MAX_LEN,stdin);
 	EspacioA_(str);
+	toUpper(str);
 	sscanf(str, "%s",frmt_str);
 	clear_if_needed(str);
 	size = strlen(frmt_str);
@@ -32,17 +33,13 @@ void AltaProducto(t_producto *p, int totalP,t_categoria c[],int totalCat)
 	strcpy (p->nombre, frmt_str);
 
 	printf("Precio: \n");
-	fgets(str,6,stdin);
-	clear_if_needed(str);
-	sscanf(str,"%f",&p->precio);
+	p->precio = pedirFloat();
 
-	printf("Introduce el numero de la categoria deseada: \n");
+	//printf("Introduce el numero de la categoria deseada: \n");
 	MostrarCategorias(c, totalCat);
-	fgets(str,2,stdin);
-	sscanf(str,"%d",&opcion);
-	clear_if_needed(str);
+	opcion = introducirOpcion(totalCat);
 	strcpy(str,Categoria(c,opcion,totalCat));
-	
+	toUpper(str);
 	size = strlen(str);
 	p->categoria = (char *) malloc ((size+1) * sizeof(char));
 	strcpy (p->categoria,str);
@@ -56,7 +53,7 @@ void printProducto(t_producto p)
 	strcpy (categoria,p.categoria);
 	_AEspacio (nombre);
 	_AEspacio (categoria);
-	printf("%s %.2f%c \n",nombre,p.precio,36);
+	printf("%s %.2f%c",nombre,p.precio,36);
 }
 
 
@@ -75,9 +72,7 @@ void EditarProducto(t_producto p[],int totalP,t_categoria c[],int totalCat)
 	char str [3];
 
 	printf("\n Introduzca el numero del producto a modificar:\n");
-	fgets(str,3,stdin);
-	clear_if_needed(str);
-	sscanf(str,"%d",&num);
+	num = introducirOpcion(totalP);
 
 	AltaProducto(&p[num],totalP,c,totalCat);
 }
@@ -88,9 +83,7 @@ void EliminarProducto(t_producto p[], int total)
 	char str [5];
 
 	printf("\n Introduzca el numero del producto a eliminar:\n");
-	fgets(str,5,stdin);
-	clear_if_needed(str);
-	sscanf(str,"%d",&num);
+	num = introducirOpcion(total);
 
 	for (int i=num;i<(total-1);i++)
 	{

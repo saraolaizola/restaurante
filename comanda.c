@@ -12,7 +12,7 @@
 #include <time.h>
 
 
-void AltaComanda(t_comanda *c,int dni, int **cuentas, int mesa)
+void AltaComanda(t_comanda *c,int dni, int **cuentas, int mesa, t_producto *p,int totalP)
 {
 	char str [3];
 	time_t now;
@@ -25,17 +25,14 @@ void AltaComanda(t_comanda *c,int dni, int **cuentas, int mesa)
     printf("Nota media del servicio (1-10):\n");
     do
     {   
-        fgets(str,6,stdin);
-        clear_if_needed(str);
-        ComaAPunto (str);
-        sscanf(str,"%f",&nota);
+        nota = pedirFloat();
         if ((nota<0)||(nota>10))
         {
             printf("Error. Introducir valor valido\n");
         }
     } while ((nota<0)||(nota>10));
     
-    total = totalCuenta(cuentas,mesa);
+    total = totalCuenta(cuentas,mesa,p,totalP);
     
     c->fechayhora=(int) now;
     c->media=nota;

@@ -3,11 +3,11 @@
 #include <ctype.h>
 #include <string.h>
 
-#define MAX_LEN 2
+#define MAX_LEN 50
 
 void clear_if_needed(char *str)
 {
-	if (str[strlen(str) - 1] != '\n')
+	if (str[strlen(str)-1] != '\n')
 	{
 		int c;    
     	while ( (c = getchar()) != EOF && c != '\n');
@@ -16,14 +16,18 @@ void clear_if_needed(char *str)
 
 int introducirOpcion(int opciones)
 {
-	char str [MAX_LEN];
 	int n;
-
-	printf("\n\n Introduzca opci%cn (1-%d): ",162,opciones);
-	fgets(str,MAX_LEN,stdin);
-	clear_if_needed(str);
-	sscanf(str,"%d",&n);
-
+	
+	printf("\n Introduzca opci%cn (1-%d): ",162,opciones);
+	do
+	{
+		n = pedirNumero();
+		if ((n<0)||(n>opciones))
+		{
+			printf("Error. Introducir valor valido\n");
+		}
+	} while ((n<0)||(n>opciones));
+	
 	return n;
 }
 
@@ -68,6 +72,15 @@ char* _AEspacio (char* input)
    	return input;
 }
 
+char * toUpper (char *input)
+{
+	int i;
+	for (i=0;i<strlen(input);i++)
+	{
+      toupper(input[i]);
+   	}
+}
+
 char* ComaAPunto (char* input)                                         
 {
     int i;
@@ -79,6 +92,68 @@ char* ComaAPunto (char* input)
         }                                           
     }
    	return input;
+}
+
+float pedirFloat ()
+{
+	char str[MAX_LEN];
+	int num,lenght,punto;
+	float input=0;
+	punto=0;
+	num=0;
+
+	do
+	{
+		fgets(str,50,stdin);
+		
+		clear_if_needed(str);
+		ComaAPunto(str);
+		lenght = strlen(str)-1;;
+
+		for (int i=0;i<lenght;i++)
+		{
+			if ((!isdigit(str[i])&&(str[i]!='.')))
+			{	
+				num=1;
+				break;
+			}
+			if (str[i]=='.')
+				punto++;
+		}
+		if ((num!=0)||(punto>1))
+			printf("Error. Asegurate de introducir un numero\n");
+
+	} while (num!=0);
+	
+	sscanf(str,"%f",&input);
+
+	return input;
+}
+
+int pedirNumero ()
+{
+	char str[MAX_LEN];
+	int input,lenght,num;
+	num=0;
+
+	do
+	{
+		fgets(str,50,stdin);
+		lenght = strlen (str)-1;
+
+		for (int i=0;i<lenght;i++)
+		{
+			if (!isdigit(str[i]))
+				num=1;
+		}
+		if (num!=0)
+			printf("Error. Asegurate de introducir un numero\n");
+
+	} while (num!=0);
+	
+	clear_if_needed(str);
+	sscanf(str,"%d",&input);
+	return input;
 }
 
 int comprobarClave()

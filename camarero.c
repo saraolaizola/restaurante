@@ -12,11 +12,12 @@ void AltaCamarero(t_camarero *c,t_camarero lista[],int total)
 {
 	char str [MAX_LEN];
 	char frmt_str [MAX_LEN];
-	int size,dni,unica;
+	int size,numero,unica;
 
 	printf("Nombre: \n");
 	fgets(str,MAX_LEN,stdin);
 	EspacioA_(str);
+	toUpper(str);
 	sscanf(str, "%s",frmt_str);
 	size = strlen(frmt_str);
 	c->nombre = (char *) malloc ((size+1) * sizeof(char));
@@ -26,6 +27,7 @@ void AltaCamarero(t_camarero *c,t_camarero lista[],int total)
 	printf("Apellido: \n");
 	fgets(str,MAX_LEN,stdin);
 	EspacioA_(str);
+	toUpper(str);
 	sscanf(str, "%s",frmt_str);
 	size = strlen(frmt_str);
 	c->apellido = (char *) malloc ((size+1) * sizeof(char));
@@ -35,33 +37,36 @@ void AltaCamarero(t_camarero *c,t_camarero lista[],int total)
 	printf("DNI (sin letra): \n");
 	do
 	{
-		fgets(str,20,stdin);
-		sscanf(str,"%d",&dni);
+		fgets(str,50,stdin);
 		clear_if_needed(str);
-		unica = ClaveUnica(dni,lista,total);
+		size = strlen (str);
+		sscanf(str,"%d",&numero);
+		unica = ClaveUnica(numero,lista,total);
 		if (unica!=0)
 		{
 			printf("Error. DNI ya existente. \n");
 		}
-		if (strlen(str)!=9)
+		if (size!=9)
 		{
 			printf("Error. Introducir los 8 digitos.\n");
 		}
-	} while ((strlen(str)!=9)||(unica!=0));
-	sscanf(str,"%d",&c->dni);
-	clear_if_needed(str);
+	} while ((size!=9)||(unica!=0));
+	c->dni = numero;
 
 	printf("Telefono: \n");
 	do
 	{
-		fgets(str,20,stdin);
-		sscanf(str,"%d",&c->tel);
+		fgets(str,50,stdin);
 		clear_if_needed(str);
-		if (strlen(str)!=10)
+		size = strlen (str);
+		sscanf(str,"%d",&numero);
+		if (size!=10)
 		{
 			printf("Error. Introducir los 9 digitos.\n");
 		}
-	} while (strlen(str)!=10);
+	} while (size!=10);
+	c->tel = numero;
+
 }
 
 void printCamarero(t_camarero c)

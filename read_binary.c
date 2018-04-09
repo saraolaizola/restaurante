@@ -42,10 +42,8 @@ void LeerCamareros(t_camarero c[])
 			{
 				sscanf(str, "%s %s %d %d",nombre,apellido,&dni,&tel);
 				c[i].nombre = (char *) malloc ((strlen(nombre)+1) * sizeof(char));
-				//_AEspacio (nombre);
 				strcpy (c[i].nombre, nombre);
 				c[i].apellido = (char *) malloc ((strlen(apellido)+1) * sizeof(char));
-				//_AEspacio (apellido);
 				strcpy (c[i].apellido, apellido);
 				c[i].dni = dni;
 				c[i].tel = tel;

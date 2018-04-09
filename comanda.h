@@ -16,7 +16,7 @@ typedef struct
 
 } t_comanda;
 
-void AltaComanda(t_comanda *c,int dni,int **cuentas, int mesa);
+void AltaComanda(t_comanda *c,int dni, int **cuentas, int mesa, t_producto *p,int totalP);
 void mediaCamarero (t_comanda *c, int totC, t_camarero *camar, int totCam);
 
 #endif
