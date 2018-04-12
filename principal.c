@@ -126,12 +126,13 @@ int main (int argc, char *argv[])
 					{
 						printf("\n 1. Lista de los camareros");
 						printf("\n 2. Nota media camareros");
-						printf("\n 3."); 
+						printf("\n 3. Actividad camareros"); 
 						printf("\n 4.");
 						printf("\n 5.");
 						printf("\n 6.");
-						printf("\n 7. Salir");
-						m = introducirOpcion(7);
+						printf("\n 7.");
+						printf("\n 8. Salir");
+						m = introducirOpcion(8);
 						switch(m)
 						{
 							case 1:
@@ -142,9 +143,12 @@ int main (int argc, char *argv[])
 							mediaCamarero(comandas,totalCom, camareros,totalC);
 							break;
 
+							case 3:
+							actividadCamarero(comandas,totalCom,camareros,totalC);
+							break;
 							//...
 						}
-					}while(m!=7);
+					}while(m!=8);
 					break;
 
 					case 2:

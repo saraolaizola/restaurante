@@ -18,5 +18,6 @@ typedef struct
 
 void AltaComanda(t_comanda *c,int dni, int **cuentas, int mesa, t_producto *p,int totalP);
 void mediaCamarero (t_comanda *c, int totC, t_camarero *camar, int totCam);
+void actividadCamarero (t_comanda *comanda, int totComanda, t_camarero *camarero, int totCamarero);
 
 #endif

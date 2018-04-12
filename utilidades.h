@@ -12,5 +12,6 @@ int pedirNumero ();
 float pedirFloat ();
 int comprobarClave();
 void cambiarClave();
+void linea();
 
 #endif

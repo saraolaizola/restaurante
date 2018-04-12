@@ -205,10 +205,6 @@ void ImprimirCuenta (t_producto *prod,int totP, int **cuentas, int mesa)
    	linea();
 }
 
-void linea()
-{
-	printf("\n -------------------------\n");
-}
 
 float totalCuenta(int **cuentas, int mesa, t_producto *productos, int totalP)
 {

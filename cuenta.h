@@ -12,7 +12,6 @@ int MostrarProductosxCategoria (t_producto p[],int totalP,int numCat,t_categoria
 int getProducto(t_producto p[],int totalP,int numCat,t_categoria c[],int totalCat, int opcion);
 float getPrecio(t_producto p[],int totalP,int numCat,t_categoria c[],int totalCat, int opcion);
 
-void linea();
 void ImprimirCuenta (t_producto *prod,int totP, int **cuentas, int mesa);
 float totalCuenta(int **cuentas, int mesa, t_producto *productos, int totalP);
 

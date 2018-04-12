@@ -223,3 +223,8 @@ void cambiarClave()
 		fclose(f);
 	}
 }
+
+void linea()
+{
+	printf("\n _______________________________________ \n");
+}

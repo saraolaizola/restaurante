@@ -45,7 +45,8 @@ void mediaCamarero(t_comanda *comanda, int totComanda, t_camarero *camarero, int
     int dni,cantidad;
     float total;
 
-    printf("\n ** NOTA MEDIA DE LOS CAMAREROS ** \n\n");
+    linea();
+    printf("\n   ** NOTA MEDIA DE LOS CAMAREROS ** \n\n");
 
 	for (int i =0; i< totCamarero; i++)
 	{
@@ -62,6 +63,36 @@ void mediaCamarero(t_comanda *comanda, int totComanda, t_camarero *camarero, int
             }
         }
         total= total/cantidad;
-        printf("%s %s %.2f\n",camarero[i].nombre, camarero[i].apellido, total);
+        printf(" - %s %s %.2f\n",camarero[i].nombre, camarero[i].apellido, total);
 	}
+    linea();
+}
+
+void actividadCamarero (t_comanda *comanda, int totComanda, t_camarero *camarero, int totCamarero)
+{
+    int dni,cantidad;
+    float total;
+
+    linea();
+    printf("\n  ** ACTIVIDAD DE LOS CAMAREROS ** \n");
+    printf(" (Camarero/Num.Comandas/Imp.Total)\n\n");
+
+
+    for (int i =0; i< totCamarero; i++)
+    {
+        dni = camarero[i].dni;
+        cantidad=0;
+        total=0,0;
+
+        for (int j=0; j<totComanda; j++) 
+        {
+            if(dni==comanda[j].dni)
+            {
+                total += comanda[j].total;   
+                cantidad++;    
+            }
+        }
+        printf(" %s %s  x%d  %.2f%c\n",camarero[i].nombre, camarero[i].apellido,cantidad,total,36);
+    }
+    linea();
 }
