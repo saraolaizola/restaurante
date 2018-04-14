@@ -96,3 +96,26 @@ void actividadCamarero (t_comanda *comanda, int totComanda, t_camarero *camarero
     }
     linea();
 }
+
+void valorMedioComandas (t_comanda *comanda, int totComanda)
+{
+    
+    float total, precio;
+     
+
+    printf("\n  ** PRECIO MEDIO GASTADO POR CLIENTES ** \n");
+        
+    
+    total=0,0;
+
+    for (int i =0; i<totComanda; i++)
+    {
+        total+=comanda[i].total;
+        
+
+
+    }
+    precio= total/totComanda;
+
+    printf("Los clientes han gastado una media de %.2f por mesa \n", precio );
+}
