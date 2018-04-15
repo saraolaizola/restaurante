@@ -140,3 +140,25 @@ void mediaServicio (t_comanda *comanda, int totComanda)
 
     printf("La valoracion del servicio por parte de los cliente ha logrado un %.2f/10 de media \n", media );
 }
+
+void PrecioMedioProductosxCategoria (t_producto p[],int totalP,t_categoria c[],int totalCat)
+{
+
+    int cant;
+    float med, precioTot;
+
+    for (int i =0; i < totalCat; i ++)
+    {
+        for (int j =0; j<totalP; j ++)
+        {
+            if ( strcmp(c[i].nombre,p[j].categoria)==0)
+            {
+                precioTot += p[i].precio;
+                cant++;
+            }
+        }
+        med = precioTot/cant;
+        printf ("En la categoria %s el precio medio de los productos es de %.2f%c \n",c[i].nombre,med,36);
+        cant=0;
+    }
+}
