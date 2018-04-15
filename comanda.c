@@ -34,7 +34,7 @@ void AltaComanda(t_comanda *c,int dni, int **cuentas, int mesa, t_producto *p,in
     
     total = totalCuenta(cuentas,mesa,p,totalP);
     
-    c->fechayhora=(int) now;
+    c->fechayhora=(int)now;
     c->media=nota;
     c->dni=dni; 
     c->total=total;
@@ -63,7 +63,7 @@ void mediaCamarero(t_comanda *comanda, int totComanda, t_camarero *camarero, int
             }
         }
         total= total/cantidad;
-        printf(" - %s %s %.2f\n",camarero[i].nombre, camarero[i].apellido, total);
+        printf(" %s %s %.2f\n",camarero[i].nombre, camarero[i].apellido, total);
 	}
     linea();
 }
@@ -102,22 +102,20 @@ void valorMedioComandas (t_comanda *comanda, int totComanda)
     
     float total, precio;
      
-
-    printf("\n  ** PRECIO MEDIO GASTADO POR CLIENTES ** \n");
+    linea();
+    printf("\n  ** PRECIO MEDIO GASTADO POR MESA ** \n\n");
         
-    
     total=0,0;
 
     for (int i =0; i<totComanda; i++)
     {
         total+=comanda[i].total;
-        
-
 
     }
     precio= total/totComanda;
 
-    printf("Los clientes han gastado una media de %.2f por mesa \n", precio );
+    printf("\n  HAN GASTADO UNA MEDIA DE %.2f POR MESA \n", precio );
+    linea();
 }
 
 void mediaServicio (t_comanda *comanda, int totComanda)
@@ -125,8 +123,8 @@ void mediaServicio (t_comanda *comanda, int totComanda)
     
     float total, media;
      
-
-    printf("\n  ** MEDIA DEL SERVICIO DEL RESTAURANTE ** \n");
+    linea();
+    printf("\n  ** MEDIA DEL SERVICIO DEL RESTAURANTE ** \n\n");
         
     
     total=0,0;
@@ -138,27 +136,74 @@ void mediaServicio (t_comanda *comanda, int totComanda)
     }
     media= total/totComanda;
 
-    printf("La valoracion del servicio por parte de los cliente ha logrado un %.2f/10 de media \n", media );
+    printf(" La valoracion del servicio por parte de los \n cliente ha logrado un %.2f/10 de media \n", media );
+    linea();
+}
+
+void importeXmes (t_comanda *comanda, int totComanda)
+{
+    float total=0;
+    int mes1,mes2;
+
+    time_t now,fecha;
+    struct tm *tm;
+    char * meses [12] = {"ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE"};
+
+    now = (time_t) comanda[totComanda].fechayhora;
+    tm = localtime (&now); 
+    mes1 = tm->tm_mon;
+
+    linea();
+    printf("\n   ** INGRESOS POR MES ** \n\n\n");
+    for (int i=totComanda;i>0;i--)
+    {
+        fecha = (time_t) comanda[i].fechayhora;
+        tm = localtime (&fecha);
+        mes2 = tm->tm_mon;
+         
+        if (mes2==mes1)
+        {
+            total = total + comanda[i].total;
+        }
+        else
+        {
+            printf(" - %s %04d %.2f \n",meses[mes2],tm->tm_year+1900,total);
+            mes1=mes2;
+            total=0;
+        }
+    }
+    printf(" - %s %04d %.2f \n",meses[mes2],tm->tm_year+1900,total); //ultimo mes
+
+    linea();
+
 }
 
 void PrecioMedioProductosxCategoria (t_producto p[],int totalP,t_categoria c[],int totalCat)
 {
-
     int cant;
     float med, precioTot;
 
+    linea();
+
+    printf("\n   ** PRECIO MEDIO DE PRODUCTOS POR CATEGORIA ** \n\n");
+    
     for (int i =0; i < totalCat; i ++)
     {
+        med=0;
+        cant=0;
+        precioTot=0;
+
         for (int j =0; j<totalP; j ++)
         {
             if ( strcmp(c[i].nombre,p[j].categoria)==0)
             {
-                precioTot += p[i].precio;
+                precioTot += p[j].precio;
                 cant++;
             }
         }
         med = precioTot/cant;
-        printf ("En la categoria %s el precio medio de los productos es de %.2f%c \n",c[i].nombre,med,36);
-        cant=0;
+        printf (" %s : %.2f%c \n",c[i].nombre,med,36);
     }
+
+    linea();
 }

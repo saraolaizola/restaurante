@@ -22,5 +22,6 @@ void actividadCamarero (t_comanda *comanda, int totComanda, t_camarero *camarero
 void valorMedioComandas (t_comanda *comanda, int totComanda);
 void mediaServicio (t_comanda *comanda, int totComanda);
 void PrecioMedioProductosxCategoria (t_producto p[],int totalP, t_categoria c[],int totalCat);
+void importeXmes (t_comanda *comanda, int totComanda);
 
 #endif

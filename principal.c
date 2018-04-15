@@ -129,7 +129,7 @@ int main (int argc, char *argv[])
 						printf("\n 3. Actividad camareros"); 
 						printf("\n 4. Precio medio gastado por mesa");
 						printf("\n 5. Media del servicio del restaurante");
-						printf("\n 6.");
+						printf("\n 6. Ingresos por mes");
 						printf("\n 7. Media de precios por categoria");
 						printf("\n 8. Salir");
 						m = introducirOpcion(8);
@@ -155,11 +155,13 @@ int main (int argc, char *argv[])
 							mediaServicio(comandas, totalCom);
 							break;
 
+							case 6:
+							importeXmes(comandas,totalCom);
+							break;
+
 							case 7:
 							PrecioMedioProductosxCategoria (productos, totalP, categorias, totalCat);
 							break;
-
-							//...
 						}
 					}while(m!=8);
 					break;
@@ -201,7 +203,7 @@ int main (int argc, char *argv[])
 			} while (n!=8);
 		}
 	}	
-			
+
 	EscribirCamarero(camareros,totalC);
 	EscribirCategoria(categorias,totalCat);
 	EscribirProducto(productos,totalP);
@@ -215,6 +217,7 @@ int main (int argc, char *argv[])
 	camareros=0;
 	categorias=0;
 	productos=0;
+	comandas=0;
 
 	return 0;
 }

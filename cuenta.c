@@ -61,8 +61,7 @@ void AtenderMesa(int *cuentas[],int mesa,t_producto p[],int totalP,t_categoria c
 		do
 		{
 			totalPxCat = MostrarProductosxCategoria(p,totalP,i,c,totalCat);
-			printf(" Seleccionar opcion: \n");
-			opcion = pedirNumero();
+			opcion = introducirOpcion(totalPxCat+1);
 			
 			if ((totalPxCat+1)!=opcion)
 			{
@@ -71,7 +70,7 @@ void AtenderMesa(int *cuentas[],int mesa,t_producto p[],int totalP,t_categoria c
 				cuentas[mesa][posicion]=id; 	
 			
 				posicion++;
-				printf(" Cantidad: \n");
+				printf(" Cantidad: ");
 				cantidad = pedirNumero();
 				//precio= getPrecio(p,totalP,i,c,totalCat,opcion);
 				cuentas[mesa][posicion]=cantidad;	
