@@ -128,7 +128,7 @@ int main (int argc, char *argv[])
 						printf("\n 2. Nota media camareros");
 						printf("\n 3. Actividad camareros"); 
 						printf("\n 4. Precio medio gastado por mesa");
-						printf("\n 5.");
+						printf("\n 5. Media del servicio del restaurante");
 						printf("\n 6.");
 						printf("\n 7.");
 						printf("\n 8. Salir");
@@ -149,6 +149,10 @@ int main (int argc, char *argv[])
 
 							case 4:
 							valorMedioComandas(comandas, totalCom);
+							break;
+
+							case 5:
+							mediaServicio(comandas, totalCom);
 							break;
 
 							//...

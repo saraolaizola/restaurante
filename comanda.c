@@ -119,3 +119,24 @@ void valorMedioComandas (t_comanda *comanda, int totComanda)
 
     printf("Los clientes han gastado una media de %.2f por mesa \n", precio );
 }
+
+void mediaServicio (t_comanda *comanda, int totComanda)
+{
+    
+    float total, media;
+     
+
+    printf("\n  ** MEDIA DEL SERVICIO DEL RESTAURANTE ** \n");
+        
+    
+    total=0,0;
+
+    for (int i =0; i<totComanda; i++)
+    {
+        total+=comanda[i].media;
+        
+    }
+    media= total/totComanda;
+
+    printf("La valoracion del servicio por parte de los cliente ha logrado un %.2f/10 de media \n", media );
+}
